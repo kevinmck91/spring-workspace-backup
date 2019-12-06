@@ -1,0 +1,30 @@
+
+	SpringDemo15 - Autowired Annotations
+	
+	Autowiring by type
+		Normally we would declare a circle bean in the xml with the values that are gonig to be used when the circle is created
+		
+		Instead, remove the values / properties from the circle bean and use the autowired tag in the circle object instead
+		
+		By removing the triangle bean and the points that create the triangle bean, spring know to auto wire the only remaining point bean into the circle
+		
+		Finally we need the autowiring BeanPostProcesseor that will search for the annotation tag
+		
+		If there is more than one possible bean that will fit is as the center point, Spring will flag an error
+		
+	Autowiring by name
+		If we set the bean name equal to the name of the variable in our class, it doesnt matter how many suitable similar beans are available, 
+		
+		(if we name the bean that want to be used by our autowiring to the same variable name in our object class) the matching names will be autowired
+		
+	Autowiring by Qualified Name
+		If we cant change the name of a bean to match the variable is is setting in the class, we can use an addidional tag within the bean use the qualifier annotation in the class
+		Spring then : 
+		 1. Searches for the autowired tag in the classes due to the BeanPostProcessor Tag
+		 2. It tries to autowire by type, but there are multiple types that could fit
+		 3. It searches for names of the bean to autowire by name
+		 4. It looks for the qualifier that matched the qualifier in the annotation 
+		 5  (You need to mention all the XML nameSpaces in the XML in order for this method to work annotations-config.xml)
+	
+		Rather than declaring every BeanPostProcessor individually, you can use 
+			<context:annotation-config/>

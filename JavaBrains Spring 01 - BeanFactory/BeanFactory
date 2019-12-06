@@ -1,0 +1,25 @@
+
+	1. Downloaded the Jars from the Spring website and the apache loggings website 
+	2. Added the Jars to the project
+	
+	Spring is a container of beans in the same way Tomcat is a container of servlets.
+	Spring manages the objects lifecycle
+	Object is actually created by string (as opposed to being created via a normal instantiation)
+	
+	Factory Pattern - 
+	You write code to ask the spring container to instantiate the object and then pass it to another object for use
+	You have object A that required object B. Instead of creating object B you make a call to the 'factory object' which will create object B and pass it to object A.
+	This is done via the configuration settings (blueprint)(Spring XML) on the factory object
+	Spring can then manage the entire lifecycle of this newly created bean
+	
+	
+		The bean factory is an interface and there are different implementation classes 
+		We will configure the bean factory using an XML file
+		There are different types of bean factory's 
+		XmlBeanFactory takes in an argument which is the actual resource (spring.xml)
+		Spring.xml has the blueprint for the new objects
+		The ID is the reference to the bean.
+		When the bean factory is instantiated, it will go to the XML file, search for the ID and create the corrosponding class.
+		
+
+

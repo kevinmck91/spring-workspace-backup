@@ -1,0 +1,29 @@
+	
+	SpringDemo04 - DepandancyInjection - InnerBeans
+	
+	Use Dependency injection to pre-populate the point values in the triangle object
+	(otherwise we would have to initiliase everything in the DrawingApp. Points and triangles)
+	
+	The 3 'Point' objects will be defined by 3 separate beans in the spring.xml
+	They could be defined in the DrawingApp via ContextApplication.getBean and then use setters
+	
+	Instead, we can create a triangle via the ContextApplication and inject the point beans into the triangle bean 
+	
+	instead of setting propertys via value (as value must be a string) : 
+	<property name"pointA" value="zeroPoint" />
+	
+	we set via reference to the other bean : 
+	<property name"pointA" ref="zeroPoint" />
+	
+	we don't need to do a setPoint and then a setX, setY etc.
+	
+	INNER BEANS
+	
+	Say you want to have the zeroPoint to be accessed by different future shapes but the other points are specific to a triangle 
+	You can keep the zero point as a separate bean but have the other two points as inner beans in the triangle bean 
+	you can remove the  ref="point3" as the inner bean doesnt require it (same for an inner bean ID)
+	Innner beans allow you to isolate the bean only when it is required
+	In this case the, inner beans (point2 and point3) will only be created when you create a triangle (it will also access the zeroPoint which can be accessed by any shape)
+	
+	An alias is a way of giving the same name to multiple beans and reference them via the alias
+	You can reference a bean via ID, Name or Alias

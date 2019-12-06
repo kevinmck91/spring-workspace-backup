@@ -1,0 +1,18 @@
+
+	SpringDemo16 - JSR-250 Annotations
+	
+	JSR-250 is a standard that is not specific to spring
+	
+	@Resource is not specific to spring, ie not imported from a spring package
+	
+	It allows you to wire a bean by name. in this case the center point of the circle
+		@Resource(name="zeroPoint")
+		
+	if you declare the @Resource without a name, it will search the beans for a member variable itself (similar to autowire by name)
+	
+	
+	JSR-250 also has init and destroy method annotations (no xml or interfaces needed)
+	
+	The destroy method wont run unless you have the shutdown hook (which requires AbstractApplicationContext)
+	
+	

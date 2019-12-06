@@ -1,0 +1,24 @@
+	
+	SpringDemo09 - Init and Destroy
+	
+	If writing a destop app, you will need to close the context
+	context.registerShutdownHook(); - tells spring to close the context when the application ends
+	(required for init and destroy methods)
+	
+	By adding the interface, spring will run the init/destroy method when the bean is initilized and destroyed
+	when the main method ends, the shutdown hook gets called and the beans get destroyed. finally the method is called
+	
+	The interface is not required. the init and destroy methods can be defined in the spring.xml
+	you must : 
+	 - Create a public method in the triangle class that you want to be an init or destroy method
+	 - change the bean definition to : <bean id="triangle" class="org.javabrains.Triangle" init-method="myInitMethod">
+	 - 									<bean id="triangle" class="org.javabrains.Triangle" init-method="myInitMethod" destroyMethod="myDestroyMethod">
+	 
+	 The init and destroy method can be set globally for all beans (as opposed to one or two beans) (when in the xml)
+	 
+	 <beans default-init-method="myInit">
+	 		<bean></bean>
+	 		<bean></bean>
+	 		<bean></bean>
+	 		
+	 The interface methods are called first and spring.xml second if both are supplied

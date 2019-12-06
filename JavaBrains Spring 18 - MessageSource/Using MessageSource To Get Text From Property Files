@@ -1,0 +1,36 @@
+
+	SpringDemo18 - Using MessageSource To Get Text From Property Files
+	
+	Rather than having alert messages within the code. They can be accessed via an external property file (Using Application Context)	
+	This is the bean that access the property file : 
+	
+		<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+			<property name="basenames">
+				<list>
+					<value>mymessages</value>
+				</list>
+			</property>
+		</bean>
+
+	This is used to pick messages out of out file. Spring will seach through the classpath for a file of name "mymessages"
+	
+	The actual code is written in the the App Class. Takes in 4 parameters
+		context.getMessage(Key, Args[], Default message, local)
+		
+	We can also access message from within a class by creating a variable and injecting a bean. (Similar to how points are injected into a triangle)
+	The injection can be done 'byType' as there is only one bean of type messageSource.
+		getMessage is a method of the messageSource interface
+		
+	A message key can be made up of static text or dynamic objects. D
+	
+		Static text		-	drawing.circle=Circle drawing :
+		Dynamic text	- 	drawing.point=Circle : Point is ({0} , {1})
+	
+	Objects are passed to the dynamic parameters via an array :
+
+		messageSource.getMessage(	"drawing.point", 
+									new Object[] {center.getX() , center.getY()}, 
+									"Default point method", 
+									null	);
+			
+	

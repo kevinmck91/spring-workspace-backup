@@ -1,0 +1,19 @@
+	
+	SpringDemo12 - PropertyPlaceholderConfigurer
+	
+	You can reference the beans properties in an external file as opposed to keeping them in the beans.xml file
+	
+	Placeholders can be used instead in the beans.xml
+	
+		<bean id="pointA" class="org.javabrains.Point">
+			<property name="x" value="${pointA.pointX}"/>
+			<property name="y" value="${pointA.pointY}"/>
+		</bean>
+		
+	you have to let spring know that the values have to be substituted
+	
+		<bean class ="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer" ></bean>
+		
+		This is an "out of the box" class that allows spring to search for the properties file and replace the values in the XML
+		we also need to define the location of this properties file
+		the properites file has to be in the same location as the xml file

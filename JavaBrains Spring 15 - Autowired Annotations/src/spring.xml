@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+	xmlns:context="http://www.springframework.org/schema/context">
+
+	<context:annotation-config/>
+
+
+<!--  
+	<bean id="triangle" class="org.javabrains.Triangle">
+		<property name="pointA" ref="zeroPoint" />
+		<property name="pointB" ref="point1" />
+		<property name="pointC" ref="point2" />
+	</bean>
+-->	
+		
+	<bean  id="point1" class="org.javabrains.Point">
+		<property name="x" value="-20"/>
+		<property name="y" value="0"/>
+	</bean>
+	
+	<bean id="point2" class="org.javabrains.Point">
+		<property name="x" value="0"/>
+		<property name="y" value="20"/>
+	</bean>
+
+	
+	<bean id="circle" class="org.javabrains.Circle"></bean>
+	
+	<bean id="zeroPoint" class="org.javabrains.Point">
+		<qualifier value="circleRelated" />
+		<property name="x" value="0"/>
+		<property name="y" value="0"/>
+	</bean>
+
+</beans>

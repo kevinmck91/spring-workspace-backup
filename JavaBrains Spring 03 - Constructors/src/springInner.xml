@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<!-- 3 . Constructor injection -->
+<beans>
+	<bean id="triangle" class="org.javabrains.Triangle">
+
+		<constructor-arg value="Constructor Equilateral" />
+		<constructor-arg value="20" />
+
+		<!-- can also be set by the index of arguments: two arg constructor 
+		<constructor-arg index="0" value="Constructor Equilateral" /> 
+		<constructor-arg index="1" value="20"/> -->
+
+	</bean>
+</beans>
+

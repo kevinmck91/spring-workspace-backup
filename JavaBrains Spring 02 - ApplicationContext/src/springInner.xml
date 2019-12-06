@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<!-- 2.  Setter injection -->
+<beans>
+	<bean id="triangle" class="org.javabrains.Triangle">
+		<property name="type" value="Equilateral inner" />
+		<property name="height" value="96" />
+	</bean>
+</beans>
+

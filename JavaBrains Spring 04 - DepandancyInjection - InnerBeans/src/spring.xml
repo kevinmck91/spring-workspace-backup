@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+
+<beans>
+	<bean id="triangle" class="org.javabrains.Triangle">
+		
+		<property name="pointA" ref="zeroPoint" />	<!-- Dependancy Injection -->
+		
+		<property name="pointB">
+			<bean class="org.javabrains.Point">		<!-- Inner Bean -->
+				<property name="x" value="-20"/>
+				<property name="y" value="0"/>
+			</bean>
+		</property>
+		
+		<property name="pointC">
+			<bean id="point3" class="org.javabrains.Point">		<!-- Inner Bean -->
+				<property name="x" value="0"/>
+				<property name="y" value="20"/>
+			</bean>
+		
+		</property>
+	</bean>
+	
+	<!-- We have created 3 point objects, two of which have been changed to inner beans -->
+	
+	<bean id="zeroPoint" class="org.javabrains.Point">
+		<property name="x" value="0"/>
+		<property name="y" value="0"/>
+	</bean>
+	
+	<!--  This alias can be used in the main app instead of "triangle" -->
+	<alias name="triangle" alias="triangle-alias"/>
+	
+	
+</beans>

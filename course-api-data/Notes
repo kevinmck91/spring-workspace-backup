@@ -1,0 +1,11 @@
+1.	create a new Maven project, Create the Application class and copy over the topics package from the previous class 
+	(add in the annotation @ComponentScan) in order to add the copies package to the spring config
+	
+2. 	We need to map the topic class to the relational database table. This is done via annotations 
+	Mark the topics object as an entity and the JPA will know. (also mark the Primary Key
+
+	We don't need to make a new "Service" class to read and write from the database - This already exists in spring.
+	We just create an interface that uses the pre-existing class - CrudRepository 
+	The CrudRepositry class has to be parameterised with the Class that is being saved and the primary key.
+	The repository is now ready to be used in the TopicService class.
+	

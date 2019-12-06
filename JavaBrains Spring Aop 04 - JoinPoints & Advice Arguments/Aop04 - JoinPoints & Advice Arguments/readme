@@ -1,0 +1,67 @@
+	SpringAop04 - JoinPoints & Advice Arguments
+	
+	Get an advice to print a different message depending on the class method that has run
+	
+	a JoinPoint is an argument that has info about the method that triggers the advice
+	
+	The Aspect runs every time a method is called, not when it is run.
+	Eg. The setter method is run every time, but unless it is actually called in the App class, it wont trigger the Advice
+		System.out.println("Advice Run " + joinPoint.toString());
+		
+	
+	1. The object is created and the setter is run by default (no aspect triggered) 
+	
+	2. The Method shapeService.getCircle().setName("kev"); is run
+		
+		getCircle() - Does not trigger a method as is it not a Circle method. Its a method of the ApplicationContext class in spring
+		
+		setName("kev") - Triggers the point cut : 
+			
+			@Pointcut("within(org.javabrains.model.*)")
+			public void allCircleMethods(){	}
+			
+			Which in turn triggers all annotations with "allCircleMethods"
+			@Before("allCircleMethods()")
+			public void LoggingAdvice(JoinPoint joinPoint){
+				System.out.println("Advice Run " + joinPoint.toString());
+				System.out.println("Advice Run " + joinPoint.getTarget());
+			}
+			
+		When the Advice with the parameter JoinPoint is triggered, it sources the location of what triggered the advice
+		
+		setName("kev") - Also triggers the advice 
+		
+			@Before("args(name)")
+			public void stringArgumentsMethods(String name){
+				System.out.println("A method that takes string args has been called = " + name);
+			}
+		
+		When the Advice args with the parameter String Name is triggered, it sources the actual string that was passed.
+			
+	3. the method shapeService.getCircle().getName() is run
+	
+	
+	Other Advices
+	
+	@After - Runs the method after the target method is run (regardless if an error is flagged in the target method)
+		(Always runs, sometimes called the after Finally)
+		
+	@AfterReturning - is a type of advice that runs only if the target method runs successfully. If an error runs this
+		advice will not be run
+		
+	@AfterThrowing - Runs if an exception is flagged in the target method (doesnt work if the error is cought by try - catch
+	
+	As well as taking in the argument that a method takes in, The advice can also log the value that the method is about to return.
+		
+		@AfterReturning(pointcut="args(name)", returning="returnString")
+		public void stringArgumentsMethods3(String name, String returnString){
+			System.out.println("@AfterReturning - This runs after the target method runs successfully. Valuein = " + name + "Value out = " + returnString);
+		}
+		
+	This can also be done in @AfterThrowing Advice to capture the string that was passed in, and the exception that was passed out
+		
+	Rather than having @Before and @After all the time, we can use a @Around Advice method.
+	We need a parameter(ProceedingJoinPoint)
+	you also need to include the proceedingJoinPoint method
+	
+	

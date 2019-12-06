@@ -1,0 +1,12 @@
+
+
+	ApplicationContext - Setter Injection
+
+	ApplicationContext does everything the bean factory does and more
+	ApplicationContext is also an interface and has different implimentaions depending on the config
+	ClassPathXmlApplicationContext - you don't need to pass a file resource, a String will do.
+	You will need the move the spring.xml to the classpath (inside the scr folder)
+	Use the spring.xml to set the value of 'type' from within the triangle
+	Set the type via the property tag in the xml
+	Spring is using the setter in order to inject the type property into the object (setting injection)
+

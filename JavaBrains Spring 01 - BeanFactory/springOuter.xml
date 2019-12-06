@@ -1,0 +1,14 @@
+
+
+<!-- SpringDemo01 - BeanFactory -->
+
+
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+
+<beans>
+	<bean id="triangle" class="org.javabrains.Triangle">
+		<property name="type" value="Equilateral outer" />
+		<property name="height" value="34" />
+	</bean>
+</beans>

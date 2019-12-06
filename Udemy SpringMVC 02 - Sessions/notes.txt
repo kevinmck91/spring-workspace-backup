@@ -1,0 +1,54 @@
+1. Create a Dynamic Web Project. Including the Web.xml file
+
+2. Create an Index.jsp and test that it works.
+
+3. Convert to a Maven project and add the required Jars for Spring to the POM.xml
+
+4. 	Create a dispatcher Servlet which routes the traffic.
+	Right click project and click new Servlet.
+	Add Existing servlet and this lets you choose the Spring Dispatcher Servlet from the WebMVC jar
+	The Servlet is actually only code added to the Web.xml.
+	Change the Display name and servlet name to 'offers'
+	Add the <load-on-startup>1</load-on-startup> tag
+	The Servlet-mapping routes the traffic using the URL
+	
+5.	Spring is automatically going to try load XML beans from a pre-configured directory in Web-inf.
+	We create a Spring Bean Config.xml file in that location with the same name as the dispatcher Servlet.
+	offers-servlet.xml
+	
+6.	Be sure that the project Maven Jars are included in the Deployment assembly so the server can read them
+
+7.	We should have a controller for every section of our website.
+	Create a controller (bean) that returns a string with the annotation @RequestMapping("/")
+	We want spring to load this controller as a Bean. This is done by adding NameSpaces (schema) to the offers-servlet.xml 
+	We also add <context:component-scan and  <mvc:annotation-driven> to the file
+	This can be typed or inserted using the GUI
+	
+8. 	The dispatcher servlet needs a name to convert into a View to display 
+	we will use the jar org.springframework.web.servlet.view.InternalResourceViewResolver.class to resolve the return string.
+	we will add that class to the dispatcher servlet servlet.xml class so the Dispatcher Servlet knows what to do with the returned string
+	
+	========= Summary =========
+
+	The Beans configured in the offers-servlet.xml (bean config) file are loaded up as the program loads. Annotations are scanned for
+	The Dispatcher Servlet checks the request and forwards the request to the class via the Annotation. The controller Class is returning the string to the Servlet
+	The Dispatcher Servlet then uses the View Resolver to append and prepend the view to show .../home.jsp
+
+
+======== PART 2 ========
+
+1.	We want to now use the controller to pass data from the Session to the JSP
+
+2. 	Add the session object to the method as an argument to the Method of the controller that defined PAGE1. 
+	This is now available in our Jsp via Java using the Session.getAttribute tag
+	
+3. 	In the PAGE2 method controller, create the object ModelAndView and pass the name of the page as the ViewResolver name.
+	The default sessions expiry time is about 10 minutes
+	
+4. 	In the PAGE3 method controller, create the object Model is passed to the controller.
+	Was can use this within our method and add to the session
+	Using naked expression language means that the special charactors are interpreted as HTML in the output
+	
+5. 	In the PAGE4, import the JSTL Tag lib via Maven and the TAGLIB in the Html file. 
+	Using JSTL means that the special charactors are not interpreted as HTML in the output
+	

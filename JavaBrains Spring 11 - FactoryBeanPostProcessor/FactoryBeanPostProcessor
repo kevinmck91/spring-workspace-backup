@@ -1,0 +1,12 @@
+	
+	SpringDemo11 - FactoryBeanPostProcessor
+	
+	Without :
+		<bean class="org.javabrains.DisplayNameBeanPostProcessor"></bean>
+	in the xml, the beanPostProcessor call will not be called.
+	
+	
+	The BeanFactoryPostProcessor will run a method itself before even the BeanPostProcessor class is called.
+	
+	BeanFactoryPostProcessor takes in a BeanPostProcessor object and runs a method
+	BeanFactoryPostProcessor must also be declared in the spring.xml

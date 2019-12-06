@@ -1,0 +1,30 @@
+To connect a simple Spring (or non-spring) application to a database.
+
+1. 	Make sure the simple Spring App is actually working first. 
+
+2. 	Depending on your database (oracle) and the server you are running (tomcat) go to the server JDBC Set up guide : 
+
+	https://tomcat.apache.org/tomcat-9.0-doc/jndi-datasource-examples-howto.html#Oracle_8i,_9i_&_10g
+	
+3. 	Update the TomCat configuration file context.xml in the Servers project and add the JDBC Resource :
+	Alter the details with the correct database settings :
+
+<Resource name="jdbc/myoracle" auth="Container"
+          type="javax.sql.DataSource" driverClassName="oracle.jdbc.OracleDriver"
+          url="jdbc:oracle:thin:ORCL@//localhost:1521/orcl" 	
+          username="kevin" password="password" maxTotal="20" maxIdle="10"
+          maxWaitMillis="-1"/>
+          
+4.	Alter the web.xml file of the project to boot up the JDBC connection when the project starts
+	The res-ref-name must match the Resource name above.
+
+<resource-ref>
+ <description>Oracle Datasource example</description>
+ <res-ref-name>jdbc/myoracle</res-ref-name>
+ <res-type>javax.sql.DataSource</res-type>
+ <res-auth>Container</res-auth>
+</resource-ref>
+
+5.	You now have to download the OJDBC7. (14 doesnt work) Jar from the Oracle website and add it to the project. (Cant be done on Maven)
+	Add the Jar to the BuildPath and to the deployment assembly.
+	Depending on the Username and Password (and privilages) provided to the Context.xml the website can output certain things.

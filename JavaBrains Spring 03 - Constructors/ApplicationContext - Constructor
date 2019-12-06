@@ -1,0 +1,22 @@
+ 
+ 
+ 	SpringDemo03 - Constructors
+ 	
+	You can use a constructor to set the variables (constructor injection) by creating a constructor and changing the xml
+		<constructor-arg value="Constructor Equilateral" /> is used instead of property (comment out the setter)
+		<constructor-arg value="Constructor Equilateral" /> has one value and will search for the relevent 1-arg constructor
+	
+	This has two args and will call a 2-arg constructor
+	eg:
+		<constructor-arg value="Constructor Equilateral" />
+		<constructor-arg value="20" />
+	
+	Spring will convert the string "20" to an int to be used in the constructor, but what if you wanted the constructor with 'long' triggered
+	A different constructor will be run depending on the type of value
+	include the type="int" to make sure the correct constructor is run
+	eg:
+		<constructor-arg type="int" value="20" />
+		<constructor-arg type="java.lang.String" value="20" />
+	
+
+

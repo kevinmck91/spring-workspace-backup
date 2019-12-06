@@ -1,0 +1,25 @@
+	SpringAop05 - AOP XML configuration
+	
+	We will transfer the current Aspect file to run from our Spring XML -
+	No annoations needed
+	
+	The annotations for the aspect are found within spring XML using the <aop:config> tab
+	The bean that created the aspect as part of the Spring program is still required
+	
+	1. We need to remove @Aspect and transfer it to XML
+		<aop:aspect id="loggingAspect" ref="loggingAspect"></aop:aspect>
+		
+	2. The @Pointcut contains two bits of info. The Name and the Expression
+		This can be transfered to the XML within the above tags
+		<aop:pointcut expression="execution(* get*())" id="allGetters"/>
+		
+	3. The @Around can be transfered to the XML
+		<aop:around pointcut-ref="allGetters" method="myAroundAdvice"/>
+		
+	If you don't want to have a pointcut, you can delete the <aop:pointcut> tag and declare it inline 
+	in the <aop:around> tag
+		<aop:around pointcut="execution(* get*())" method="myAroundAdvice"/>
+		
+	The other annotations can be configured in XML with the same structure
+	Legacy code is normally in XML
+	Annotations are simple and more readable 

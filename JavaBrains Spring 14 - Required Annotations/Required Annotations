@@ -1,0 +1,25 @@
+
+	SpringDemo14 - Required Annotations
+	
+	If the circle bean is empty (has no properties and no values), The circle object will not populate that values (they will default to NULL)
+	When the drawing app tries to print the values, there will be an null pointer exception thrown and the application will not work
+	This error is caused because the dependancys are not met. 
+	 
+	You need to validate that the dependancies are met before deploying the applicatiion
+	Let spring know that the 'center' point cannot be null when the app runs. 
+	Spring must validate that there is some bean that will populate the 'center' value. ie, the setter must run
+	
+	We want the exception to be thrown when the application is initilized (not when in use)
+	
+	Use the annotation @Required on the center setter  
+	you will also have to declare a BeanPostProcessor in the Spring xml as its a beanPostProcessor that is doing the validation
+	
+	The bean:
+		<bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor">
+		</bean>
+	Will check for the @required tag
+	
+	The error will not flag in the application but in the bean itself 
+		"Property 'center' is required for bean 'circle"
+	
+	 

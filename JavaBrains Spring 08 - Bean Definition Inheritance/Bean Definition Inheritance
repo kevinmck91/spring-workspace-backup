@@ -1,0 +1,16 @@
+	
+	SpringDemo08 - Bean Definition Inheritance
+	
+	If you have a hundreds of beans with different definitions for all of them, yet you have a common set of values that will be set on multiple beans
+	You can have one bean with all the common bean definitions and the other beans can inherit the aspects from the parent bean (it can be a bean in itself or an abstract bean template)
+	
+		parentTriangle bean defines one of the 3 points
+		you can have multiple beans which inherit from this parent triangle 
+		you can inherit the parent properties in the child bean, or overwrite them
+		
+		If the parent bean is set up as a list, the child bean can inherit and add to the list
+		The child bean can overwrite the parent list by defining a list or it can add to the parent list by by defining the list as :
+	
+		<list merge="true">
+			<ref bean="pointB">
+		</list> 	

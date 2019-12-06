@@ -1,0 +1,26 @@
+
+	SpringDemo17 - Component and Stereotype Annotations
+	
+	We can have certain configurations in the circle class (instead of the xml) and wire them via annotations
+	
+	We need to tell spring what classes of ours are going to be beans.
+	
+	Whenever spring sees a class with the annotation @Component we can remove the bean from the xml as its not needed.
+	
+	Disadvantage of Annotations :
+	There are 3 beans in the XML that use the same class. Since the annotation is part of the class, you can only have one type of Spring bean (instead of 3)
+	Wont work for the 'point' class, these must be declared in the XML
+
+	A tag is required to tell spring to search through the package for any class that might have the  @Component annotation
+		<context:component-scan base-package="">
+		
+	<context:component-scan base-package=""> searches for a few other annotations, not just @Component. These are called Stereotypes
+	
+	Instead of @Component we could have @Service from the Stereotype package (it give the developer more details as to what the bean/class is or does).
+	Adds a level of documentation, Also tied to Aspect orientated programming
+	An @Component tag is ambigious, 
+	if its a service class, use @Service, 
+	if its a data class, use @Repository, 
+	if its a controller, use @Controller
+	
+	

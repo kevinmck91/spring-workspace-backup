@@ -1,0 +1,44 @@
+	SpringAop02 - PointCuts & Wildcards
+	
+	At the moment, the aspect is running before every getName method, regardless of the circle, triangle etc.
+	
+	We want the advice to run only for the getName of the circle class.
+	This is done via changing the target annotation 
+	Give the annotation more information
+	
+	From - 	@Before("execution(public String getName())")
+	to	 - 	@Before("execution(public  String org.javabrains.model.Circle.getName())")
+	
+	What if you want one advice to apply to a set of different methods (two ways)
+	
+	1. One advice applied to different points (methods) by using wildcards
+			@Before("execution(public String getName())") - Applied to all methods with getName
+		
+		If you want it added to all getters, getHeight, getColour etc. Use a wildcard
+			@Before("execution(public String get*())")
+			
+		Since getHeight, will likely return an Int, this can also be wildcarded
+			@Before("execution(public * get*())")
+			
+		You can also remove the 'public' to include private and protected methods
+			@Before("execution(* get*())")
+			
+		The above annotations will only run on getters that don't take in any arguments
+		Adding to dots mean there can be Zero arguments or multiple arguments
+			@Before("execution(* get*(..))")
+		
+		Other examples
+			@Before("execution(* org.javabrains.model.*.get*(..))")
+			
+	
+	2.  If you have one point (method) in your code and you want multiple advice's to be executed.
+		You can define a Pointcut instead of having multiple annotations 
+	
+		allGetters holds a point cut expression
+			@Pointcut("execution(public * get*())")
+			public void allGetters(){}
+		
+		Allows you to use your expression once and the @Before annotions reference the pointcut and not the actual method string
+		
+	
+		

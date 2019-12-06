@@ -1,0 +1,8 @@
+	
+	SpringDemo05 - InitializingCollections
+	
+	Rather than having 3 defined points in the triangle object, we can have a List (Collection)
+	
+	When using spring to initialize the triangle object, rather than set properties, we set values of a list using references to the other beans
+	
+	(this method is not normally used for large lists)

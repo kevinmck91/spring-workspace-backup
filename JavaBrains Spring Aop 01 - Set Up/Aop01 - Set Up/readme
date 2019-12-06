@@ -1,0 +1,35 @@
+	SpringAop01 - Set Up - Aspect Orientated Programming
+	
+	Aspect Orientated programming is a Model of programming
+	
+	Common Procedure - a method that is present in each object. - logger
+		Error:
+		Not efficient as it has to be called in every object.
+	
+	Better practice to separate the method to a separate logger class where every object calls the logger object. 
+	Cross-cutting concerns are parts of a program that rely on or must affect many other parts of the system.
+		Errors:
+		Too many dependancies to the logger object / to many relations to this crosscutting object. 
+		(Cross-cutting concerns are parts of a program that rely on or must affect many other parts of the system.)
+		Same amount of code required
+	
+	Aspects :
+	Remove the common functionality by creating a new Aspect class
+		The Aspect is not referenced in the code, You define an aspect configuration via annotations
+		Aspects fix CrossCutting concerns
+	
+	1. write aspects
+	2. configure where the aspects apply
+	
+	To set up, download required jars
+	Add the reqired XML in order to write AOP code
+	Set up the spring project as normal with a Circle and Triangle bean injecting byName into the ShapeService bean
+	
+	Create a new class called Logging Aspect. This will contain various methods that will run 
+		1. 'Advice' is a AOP terminology of Aspect method names. An Aspect can have many Advice's
+		2. By entering @Aspect the class becomes an aspect
+		3. Write the required methods
+		4. By entering the annotation to the method in the aspect : @Before("execution(public String getName())")
+			The aspect method will run before the execution of that method signiture
+		5. <aop:aspectj-autoproxy /> is also needed to let spring know that aspect programming is being used 
+		6. Finally a bean is required that bean to create the Aspect within the project is also needed

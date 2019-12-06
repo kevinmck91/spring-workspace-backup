@@ -1,0 +1,22 @@
+	
+	SpringDemo13 - Coding to Interfaces
+	
+	Having the application create the triangle bean is fine but not utilising the full power of spring.
+	The app is dependent on the triangle class
+	
+	Instead, you can create a shape interface and use that in the App instead. The app doesn’t have to know which draw method it is using
+	
+	The interface has a method that all the shape object have to implement
+	
+	We have
+	- Triangle class dependant on 3 point object and implementing the Shape interface
+	- Circle class dependant on 1 point object and implementing the Shape interface
+		
+		
+	For every object that we create, we have to write the object definition in the Spring XML
+	
+	advantages :
+	when createing a new class, you just have to drop in the class, change the spring xml and drawing App will draw different shapes
+	Doesnt tie the App to certain classes, only to one interface
+	acts as a in-between for the view layer (app) and the business layer(classes)
+	The view layer doenst have to be changed, only the wiring of the xml so the class can use it  

@@ -1,0 +1,28 @@
+	
+	SpringDemo10 - BeanPostProcessor
+	
+	BeanPostProcessor are classes that tell spring there is some method that need to run after creating the bean.
+	
+	The code in the BeanPostProcessor will run after spring has initilized every bean. 
+	
+	- The Method will run for every initilization of every bean 
+	- BeanPostProcessor is a separate class
+	
+	Write a class containing two methods to print the bean name after every bean has been initilized. 
+	
+	The method is an interface and takes two parameters. The bean object is passed and the name of the bean in the XML is passed in
+	The method does something or to the object 
+	The method will return any object to continue the object config
+	The BeanPostProcessor has to be declared in the XML. having the class is not enough
+	
+	@Override
+		public Object postProcessAfterInitialization(Object bean, String beanName)
+				throws BeansException {
+			System.out.println("In after initizilation method. Bean name is : " + beanName );
+			return bean;
+		}
+		
+	
+	in order to impliment this in the spring.xml:
+	<bean class="org.javabrains.DisplayNameBeanPostProcessor"></bean>
+	and this is enough

@@ -1,0 +1,32 @@
+
+	SpringDemo19 - Event Handling
+	
+	1. Event publisher
+	2. Event Listener
+	3. The Event itself (a class with info about the event)
+	
+	Spring provides the interfaces for publishers and listeners
+	
+	the method onApplicationEvent is called by spring when any application Event is published
+	
+	Spring sends the ApplicationEvent object to the method every time a framework event is published 
+	
+	A bean is required but not if you have the @Component annotation
+	
+	In order to publish your own event you need
+		an Event class
+		an event publisher
+		
+	Any event you write has to extend the ApplicationEvent class
+	
+	Create the event in the draw method of the circle
+	Publish the event in the Draw Method of the circle
+	
+	The circle implements the ApplicationEventPublisherAware interface, which is allows spring to provide the publisher object to the bean via the setter method
+	
+	When the code runs 
+		1. Spring starts up and triggers a framework event which the MyEventListener class picks up prints the event as a string
+		2. The beans are created and run as normal 
+		3. The circle creates a draw event object and publishes the event
+		4. The MyEventListener class picks this up also and calls the toString method
+		5. The toString in the drawevent class overwrites the toString in the MyEventListener 

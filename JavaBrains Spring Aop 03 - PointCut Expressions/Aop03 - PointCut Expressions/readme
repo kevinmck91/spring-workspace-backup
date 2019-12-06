@@ -1,0 +1,20 @@
+	SpringAop02 - PointCuts & Wildcards
+	
+	Pointcut is when you have multiple aspect Advices running for a single method in a class
+	
+	If you want a set of Advices to run every time that any method in a circle class is triggered 
+		
+		@Pointcut("within(org.javabrains.model.Circle)")
+		public void allCircleMethods(){}
+
+		
+		execution - Takes in a method name
+		within	  - Takes in a class name
+		args	  -	Takes in arguments if a method Requires them  
+		
+	Best practice -  Combine pointcut expressions : 
+	
+		@Before("allGetters() && allCircleMethods()")
+		public void SecondAdvice(){
+			System.out.println("This advice will run when a get method is called AND a circle method is called");
+		}

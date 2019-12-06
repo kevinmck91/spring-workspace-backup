@@ -1,0 +1,33 @@
+	
+	SpringDemo07 - Bean Scope
+	
+	an object can reference any bean from then spring container
+	The spring container will create an object and pass it to the calling object using the factory pattern
+	
+	When the ApplicationContext is initilized,  it reads the springXML and creates all the beans itself (there is no object calling the getBean yet)
+	When the object calls the getBean method, the ApplicationContext passes over the initilized bean
+	
+	Singleton scope
+		ApplicationContext looks at all the beans definitions in the XML and creates one bean per bean definition
+		No matter how may calls are made to the getBean, the ApplicationContext returns the same bean (the same instance)
+		Eg if we had multiple classes accessing the same triangle from the ApplicationContext, the ApplicationContext would have returned the same object each time
+		By default, all beans will be singletons
+		
+	Prototype scope
+		A new bean is created with every request (or reference) context.getBean().
+		If the Triangle bean was defined as a prototype, each class that calls the context.getBean() to create an object, the spring container creates a new bean each time
+		
+	Web-aware Scopes
+		Request - a new bean is created per servlet request 
+		Session - you can create a single bean per session. New user in new session = new bean
+		Global Session - Per HTTP session
+		
+	Scopes are entered in the bean definition 
+	
+	Nesting Application Contexts
+		If the application calls the triangle bean (singleton) and the triangle bean is dependent on the Point bean (prototype) the point bean is restricted to singleton also. 
+		We'll provide our beans with access to the ApplicationContext object by implementing the ApplicationContextAware interface. We'll also use BeanNameAware interface to get the name of the bean configured in the Spring XML
+		The ApplicationContext that is created in the app can be used within the Triangle object by implimenting an interface ApplicationContextAware
+		When Spring loads the beans, it sees that the beans implements an ApplicationContext interface, spring passes the ApplicationContext to this method so it can be used in the triangle (similar to a setter)
+		
+		The BeanNameAware interface gets the name of the bean as a parameter

@@ -1,0 +1,26 @@
+	
+	
+	SpringDemo06 - AutoWiring
+	
+	byName
+	
+		Allows us to skip some of the configuration that we have to do. 
+		IE. we have to specify the reference from the bean being called to the other beans that are being injected into the bean being called.
+		
+		The name of the Bean must be the same as the name variable that we are trying to set
+		
+		Add the tag : autowire="byName
+		<bean id="triangle" class="org.javabrains.Triangle" autowire="byName">
+		
+		When spring sees autowire="byName" in the triangle bean, it checks the names of the variable in the triangle class then searches through the XML for a bean of the same name to references it
+	
+	byType
+		
+		If you have only one member variable of point and only one bean of type point then you can autowire byType
+	
+	Constructor
+	
+		Does the same as autowire byType but instead of doing the Setter Injection, it does the Constructor Injection. You can still only have one bean per type 
+		
+	
+	Autowiring is not recommended for a large amounts of beans as its hard to track what spring is doing
