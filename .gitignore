@@ -169,4 +169,9 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+# Other things to ignore : 
+Servers/
+RemoteSystemTempFiles/
+
+
 # End of https://www.gitignore.io/api/java,maven,windows,eclipse,java-web,database,archives
